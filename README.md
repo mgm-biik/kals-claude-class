@@ -77,3 +77,27 @@ npx rea-agents uninstall
 ```
 
 그다음 `~/.kals` 폴더와 `kals-free` 명령(macOS `~/.local/bin/kals-free`, Windows `%USERPROFILE%\.local\bin\kals-free.cmd`)을 지우면 됩니다.
+
+
+## 비익 구성원용 claude-free
+
+비익 온보딩 안내서는 `kals-free` 대신 같은 일을 하는 `claude-free` 명령을 씁니다. 동작은 `04-free`와 똑같고 명령 이름과 키를 저장하는 자리만 다르므로, 두 명령을 한 컴퓨터에 함께 둘 수 있습니다. freellmapi 앱을 켜고 키를 넣은 뒤에 실행합니다.
+
+**macOS**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/mgm-biik/kals-claude-class/main/biik/mac/claude-free.sh | bash
+```
+
+**Windows (PowerShell)**
+
+```powershell
+irm https://raw.githubusercontent.com/mgm-biik/kals-claude-class/main/biik/win/claude-free.ps1 | iex
+```
+
+| 운영체제 | 설치하거나 바꾸는 것 |
+|---|---|
+| macOS | `~/.local/bin/claude-free` 명령을 만들고, 통합 키를 키체인의 `freellmapi-unified-key` 항목에 저장합니다. `~/.zshrc`에 같은 이름의 alias가 있으면 그 alias가 먼저 실행된다고 알려 줍니다. |
+| Windows | `%USERPROFILE%\.local\bin\claude-free.cmd`와 `%USERPROFILE%\.biik\claude-free.ps1`을 만들고, 통합 키를 `%USERPROFILE%\.biik\freellmapi.key`에 이 Windows 사용자만 풀 수 있게 암호화해 저장합니다. |
+
+지울 때는 macOS에서 `rm ~/.local/bin/claude-free`와 `security delete-generic-password -s freellmapi-unified-key -a "$USER"`를 실행합니다. Windows에서는 위 표의 세 파일을 지웁니다.
